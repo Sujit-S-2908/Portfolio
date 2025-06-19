@@ -103,7 +103,7 @@ function Header() {
     const [mobileNavOpen, setMobileNavOpen] = useState(false);
     const navLinks = [
         { name: "Home", href: "#home" },
-        { name: "About Me", href: "#about" },
+        { name: "About", href: "#about" },
         { name: "Skills", href: "#technical-skills" },
         { name: "Experiences", href: "#experience" },
         { name: "Projects", href: "#projects" },
@@ -117,19 +117,31 @@ function Header() {
         if (target) {
             target.scrollIntoView({ behavior: "smooth" });
         }
+        setMobileNavOpen(false); // close mobile nav on click
     };
 
     return (
-        <header className="overflow-hidden text-white py-6 bg-dark-900 border-b border-dark-600">
-            <div className="max-w-6xl mx-auto flex justify-between items-center px-6">
-                <nav className="w-full">
-                    <ul className="flex space-x-8 items-center justify-start">
+        <header className="overflow-hidden text-white py-4 bg-dark-900 border-b border-dark-600 sticky top-0 z-50">
+            <div className="max-w-6xl mx-auto flex justify-between items-center px-4 sm:px-6">
+                <div className="flex-1 flex items-center justify-between">
+                    <span className="font-bold text-lg text-accent-500">Sujit S</span>
+                    {/* Hamburger for mobile */}
+                    <button
+                        className="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-accent-500"
+                        onClick={() => setMobileNavOpen(!mobileNavOpen)}
+                        aria-label="Toggle navigation menu">
+                        {mobileNavOpen ? <HiX className="w-7 h-7" /> : <HiMenu className="w-7 h-7" />}
+                    </button>
+                </div>
+                {/* Desktop nav */}
+                <nav className="hidden md:block flex-1">
+                    <ul className="flex space-x-4 lg:space-x-8 items-center justify-end">
                         {navLinks.map((link, index) => (
                             <li key={index} className="align-middle">
                                 <a
                                     href={link.href}
                                     onClick={(e) => handleNavClick(e, link.href)}
-                                    className="hover:underline text-slate-200 hover:text-blue-400 transition-colors text-lg font-light cursor-pointer">
+                                    className="hover:underline text-slate-200 hover:text-blue-400 transition-colors text-base font-light cursor-pointer px-2 py-1 rounded">
                                     {link.name}
                                 </a>
                             </li>
@@ -137,6 +149,23 @@ function Header() {
                     </ul>
                 </nav>
             </div>
+            {/* Mobile nav dropdown */}
+            {mobileNavOpen && (
+                <nav className="md:hidden bg-dark-900 border-t border-dark-700 px-4 pb-4">
+                    <ul className="flex flex-col space-y-2 mt-2">
+                        {navLinks.map((link, index) => (
+                            <li key={index}>
+                                <a
+                                    href={link.href}
+                                    onClick={(e) => handleNavClick(e, link.href)}
+                                    className="block w-full text-left hover:underline text-slate-200 hover:text-blue-400 transition-colors text-base font-light cursor-pointer px-2 py-2 rounded">
+                                    {link.name}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+            )}
         </header>
     );
 }
@@ -172,13 +201,13 @@ function ExperienceCard({ title, company, period, location, achievements, certif
             whileInView="onscreen"
             viewport={{ once: true, amount: 0.3 }}
             className="bg-dark-800 border border-gold-800 rounded-xl p-6 shadow-xl shadow-gold-900/25 hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] relative">
-            <div className="flex justify-between items-start mb-3">
+            <div className="flex flex-col sm:flex-row justify-between items-start mb-3 gap-2">
                 <div>
                     <h3 className="text-xl font-semibold text-gold-100">{title}</h3>
                     <p className="text-gold-400 font-medium">{company}</p>
                     <p className="text-dark-400 text-sm">{location}</p>
                 </div>
-                <span className="bg-dark-700 text-dark-200 px-3 py-1 rounded-full text-sm font-medium">{period}</span>
+                <span className="bg-dark-700 text-dark-200 px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap">{period}</span>
             </div>
             <ul className="list-disc space-y-2 pl-6">
                 {achievements.map((achievement, index) => (
@@ -199,7 +228,7 @@ function ExperienceCard({ title, company, period, location, achievements, certif
                     href={certificateUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="absolute bottom-4 right-4 inline-block px-3 py-1 bg-blue-700 text-gold-100 rounded-lg font-semibold shadow hover:bg-blue-800 transition-all text-xs hover:underline">
+                    className="mt-4 inline-block px-3 py-2 bg-blue-700 text-gold-100 rounded-lg font-semibold shadow hover:bg-blue-800 transition-all text-xs hover:underline w-full sm:w-auto text-center">
                     View Certificate
                 </a>
             )}
