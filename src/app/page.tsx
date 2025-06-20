@@ -124,7 +124,9 @@ function Header() {
         <header className="overflow-hidden text-white py-4 bg-dark-900 border-b border-dark-600 sticky top-0 z-50">
             <div className="max-w-6xl mx-auto flex justify-between items-center px-4 sm:px-6">
                 <div className="flex-1 flex items-center justify-between">
-                    <span className="font-bold text-lg text-accent-500">Sujit S</span>
+                    <span className="font-bold text-lg text-accent-500">
+                        Sujit's <span className="text-white">Portfolio</span>
+                    </span>
                     {/* Hamburger for mobile */}
                     <button
                         className="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-accent-500"
