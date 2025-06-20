@@ -224,13 +224,15 @@ function ExperienceCard({ title, company, period, location, achievements, certif
                 ))}
             </ul>
             {certificateUrl && (
-                <a
-                    href={certificateUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-4 inline-block px-3 py-2 bg-blue-700 text-gold-100 rounded-lg font-semibold shadow hover:bg-blue-800 transition-all text-xs hover:underline w-full sm:w-auto text-center">
-                    View Certificate
-                </a>
+                <div className="flex justify-end mt-4 w-full">
+                    <a
+                        href={certificateUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block w-full sm:w-auto px-3 py-2 bg-blue-700 text-gold-100 rounded-lg font-semibold shadow hover:bg-blue-800 transition-all text-xs hover:underline text-center">
+                        View Certificate
+                    </a>
+                </div>
             )}
         </motion.div>
     );
@@ -1088,9 +1090,14 @@ export default function Home() {
                         </motion.div>
                         <div className="bg-dark-800 border border-gold-400 rounded-xl shadow-lg p-8 mb-8 flex flex-col md:flex-row items-center gap-8">
                             <div className="w-full md:w-1/2 flex justify-center items-center px-4 md:px-8">
-                                <img src="/images/paper.jpg" alt="Paper Publication" className="w-full h-auto object-contain rounded-xl shadow-md" style={{ aspectRatio: "3/4", maxHeight: "480px" }} />
+                                <img
+                                    src="/images/paper.jpg"
+                                    alt="Paper Publication"
+                                    className="w-full h-auto object-contain rounded-xl shadow-md max-h-80 md:max-h-[480px]"
+                                    style={{ aspectRatio: "3/4" }}
+                                />
                             </div>
-                            <div className="flex-1">
+                            <div className="flex-1 w-full">
                                 <h3 className="text-2xl font-semibold text-gold-200 mb-2">IoT For Smart Hydroponics</h3>
                                 <p className="text-gold-100 mb-4">
                                     In this research, we propose an IoT-enabled hydroponic system for maximizing plant growth and resource utilization. Our system yielded a 30% increase in crop yield
@@ -1110,12 +1117,14 @@ export default function Home() {
                                         </li>
                                     </ul>
                                 </div>
-                                <a
-                                    href="/paper.pdf"
-                                    download
-                                    className="inline-block px-5 py-2 bg-blue-600 text-white-900 rounded-xl font-bold shadow-xl hover:bg-blue-600 transition-all mt-4 hover:underline">
-                                    Download PDF
-                                </a>
+                                <div className="flex justify-end mt-4 w-full">
+                                    <a
+                                        href="/paper.pdf"
+                                        download
+                                        className="inline-block px-3 py-2 bg-blue-700 text-gold-100 rounded-lg font-semibold shadow hover:bg-blue-800 transition-all text-xs hover:underline w-full sm:w-auto text-center">
+                                        Download PDF
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
